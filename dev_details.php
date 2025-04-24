@@ -1,1 +1,0 @@
-details d'un profil développeur

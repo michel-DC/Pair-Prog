@@ -1,1 +1,0 @@
-liste des developpeurs avec des options de gestion
