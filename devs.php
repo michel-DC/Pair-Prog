@@ -17,80 +17,234 @@ $result = mysqli_query($link, $query);
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            padding: 20px;
-            background-color: #f0f0f0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
         }
-        .form-container {
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ffffff;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #151717;
+        }
+
+        .logo span {
+            color: #8a6eff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #151717;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color:rgb(153, 128, 252);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 100px;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .form-container h1 {
+        .container h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 45px;
+            color: #151717;
+        }
+
+        .container h1 span {
+            color: #8a6eff;
+            position: relative;
+        }
+
+        .container h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #8a6eff;
+            border-radius: 3px;
+        }
+        
+        .page-title {
             text-align: center;
-            color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            color: #2d3748;
+            font-size: 2rem;
         }
-
+        
         .developers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
-            margin-top: 20px;
         }
-        .developer-card {
+        
+        .dev-card {
             background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.2s ease-in-out;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
-        .developer-card:hover {
+        
+        .dev-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .developer-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
+        
+        .dev-content {
+            padding: 20px 15px 15px;
+            flex-grow: 1;
         }
-        .developer-name {
-            font-size: 1.5rem;
-            margin: 10px 0;
-            color: #2d79f3;
+        
+        .dev-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #111827;
         }
-        .developer-stack {
-            color: #666;
+        
+        .dev-description {
             font-size: 0.9rem;
-            margin: 5px 0;
+            color: #4b5563;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
-        .developer-description {
-            color: #333;
-            line-height: 1.5;
+        
+        
+        .dev-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
+        
+        .action-bar {
+            display: flex;
+            padding: 10px 15px;
+            background: #f3f4f6;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .reserve-btn {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-align: center;
+        }
+        
+        .reserve-btn:hover {
+            background: #4338ca;
+        }
+        
+        .dev-stack {
+            font-size: 0.8rem;
+            font-weight: bolder;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Les développeurs disponible 🟢</h1>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">Code<span>Pair</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="devs.php">Réserver un développeur</a></li>
+                    <li><a href="../connexion/login.php">Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Nos développeurs <span>disponibles</span></h1>
+        
         <div class="developers-grid">
-            <?php while($developpeur = mysqli_fetch_assoc($result)): ?>
-                <div class="developer-card">
-                    <img src="<?= str_replace('../', '', $developpeur['photo_profil']) ?>" alt="<?= $developpeur['fullname'] ?>">
-                    <div class="developer-name"><?= $developpeur['fullname'] ?></div>
-                    <div class="developer-stack">Stack: <?= $developpeur['stack'] ?></div>
-                    <div class="developer-description"><?= $developpeur['description'] ?></div>
+            <?php while($dev = mysqli_fetch_assoc($result)): ?>
+                <div class="dev-card">
+                    
+                    <img class="dev-avatar" src="<?= str_replace('../', '', $dev['photo_profil']) ?>" alt="<?= $dev['fullname'] ?>">
+                    
+                    <div class="dev-content">
+                        <h3 class="dev-title"><?= $dev['fullname'] ?></h3>
+                        
+                        <p class="dev-description"><?= $dev['description'] ?></p>
+                        
+                        <div class="dev-stack">Stack : <?= $dev['stack'] ?></div>
+                        
+                    </div>
+                    
+                    <div class="action-bar">
+                        <button class="reserve-btn" onclick="reserverDev(<?= $dev['id'] ?>)">Réserver 👨‍💻</button>
+                    </div>
                 </div>
             <?php endwhile; ?>
         </div>
     </div>
+
 </body>
 </html>

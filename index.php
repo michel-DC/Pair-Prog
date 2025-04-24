@@ -303,8 +303,7 @@
             <nav>
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
-                    <li><a href="devs.php">Développeurs</a></li>
-                    <li><a href="../reservation/reserve.php">Réserver</a></li>
+                    <li><a href="devs.php">Réserver un développeur</a></li>
                     <li><a href="../connexion/login.php">Connexion</a></li>
                 </ul>
             </nav>
