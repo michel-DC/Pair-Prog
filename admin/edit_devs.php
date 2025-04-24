@@ -102,7 +102,7 @@ if (isset($_POST['edit_developpeur'])) {
 </head>
 <body>
     <div class="form-container">
-        <h2>Modifier un Profil Développeur</h2>
+        <h2>Modifier un profil de développeur</h2>
         
         <?php if (isset($success)): ?>
             <div class="message success"><?= $success ?></div>

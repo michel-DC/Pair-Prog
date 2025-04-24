@@ -43,7 +43,6 @@ if (isset($_POST['ajt_developpeur'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -51,107 +50,75 @@ if (isset($_POST['ajt_developpeur'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un Développeur</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
         body {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 20px;
             background-color: #f0f0f0;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
         .form-container {
-            width: 1000px;
+            max-width: 600px;
+            margin: 0 auto;
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border: 1px solid #ecedec;
-        }
-        .form-container h1 {
-            color: #151717;
-            font-weight: 600;
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 2rem;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .form-group {
-            margin-top: 30px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
         label {
             display: block;
-            margin-bottom: 10px;
-            color: #151717;
-            font-weight: 500;
-            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #333;
         }
         input[type="text"], textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ecedec;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            transition: border-color 0.2s ease-in-out;
-            font-size: 1rem;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
-        input[type="text"]:focus, textarea:focus {
-            border-color: #2d79f3;
-            outline: none;
-        }
-        textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        .submit-btn {
+        .btn {
             background-color: #2d79f3;
             color: white;
+            padding: 10px 20px;
             border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: 500;
-            width: 100%;
-            transition: background-color 0.2s ease-in-out;
-            font-size: 1.1rem;
         }
-        .submit-btn:hover {
+        .btn:hover {
             background-color: #1a5bbf;
         }
         .message {
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 1.1rem;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
         }
         .success {
             background-color: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
         }
         .error {
             background-color: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
         }
         input[type="file"] {
-            padding: 10px;
-            border: 1px solid #ecedec;
-            border-radius: 8px;
-            background-color: #f8f9fa;
             width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h1>Ajouter un Développeur</h1>
+        <h2>Ajouter un développeur</h2>
         
         <?php if (isset($success)): ?>
             <div class="message success"><?= $success ?></div>
+        <?php endif; ?>
+        
+        <?php if (isset($error)): ?>
+            <div class="message error"><?= $error ?></div>
         <?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data" action="dashboard.php#add-dev-section">
@@ -161,7 +128,7 @@ if (isset($_POST['ajt_developpeur'])) {
             </div>
             
             <div class="form-group">
-                <label for="stack">Stack</label>
+                <label for="stack">Stack technique</label>
                 <input type="text" id="stack" name="stack" required>
             </div>
             
@@ -175,7 +142,7 @@ if (isset($_POST['ajt_developpeur'])) {
                 <input type="file" id="profile_picture" name="profile_picture" required>
             </div>
             
-            <button type="submit" name="ajt_developpeur" class="submit-btn">Ajouter le développeur</button>
+            <button type="submit" name="ajt_developpeur" class="btn">Ajouter le développeur</button>
         </form>
     </div>
 </body>

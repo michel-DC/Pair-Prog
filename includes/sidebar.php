@@ -1,6 +1,7 @@
 <aside class="sidebar">
     <div class="sidebar-header">
         <h2>Tableau de Bord Administrateur</h2>
+        <button id="toggle-sidebar" class="toggle-btn">☰</button>
     </div>
     <nav class="sidebar-nav">
         <ul>
@@ -68,17 +69,32 @@
         padding: 30px;
         box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        transition: width 0.3s ease;
+    }
+    .sidebar.collapsed {
+        width: 80px;
+    }
+    .sidebar.collapsed .nav-text {
+        display: none;
+    }
+    .sidebar.collapsed .sidebar-header h2 {
+        display: none;
     }
     .sidebar-header {
         margin-bottom: 30px;
         padding-bottom: 20px;
         border-bottom: 1px solid #ecedec;
+        position: relative;
     }
-    .sidebar-header h2 {
-        margin: 0;
+    .toggle-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
         font-size: 1.5rem;
-        color: #151717;
-        font-weight: 600;
+        padding: 5px;
     }
     .sidebar-nav ul {
         list-style: none;
@@ -107,6 +123,7 @@
     .nav-text {
         font-size: 1rem;
         font-weight: 500;
+        transition: opacity 0.2s ease;
     }
     .sidebar-footer {
         position: absolute;
@@ -124,3 +141,10 @@
         background-color: #ffe6e6;
     }
 </style>
+
+<script>
+    document.getElementById('toggle-sidebar').addEventListener('click', function() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('collapsed');
+    });
+</script>

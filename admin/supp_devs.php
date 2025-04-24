@@ -96,7 +96,7 @@ if (isset($_POST['supp_developpeur'])) {
 </head>
 <body>
     <div class="form-container">
-        <h2>Supprimer un Développeur</h2>
+        <h2>Supprimer un profil de développeur</h2>
         
         <?php if (isset($success)): ?>
             <div class="message success"><?= $success ?></div>

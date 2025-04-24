@@ -25,6 +25,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodePair | Admin Dashboard</title>
+    <link rel="shortcut icon" href="../assets/images/icon/codepair_icon.PNG" type="image/x-icon">
     <style>
        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
         body {
@@ -34,7 +35,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
             margin: 0;
         }
         .dashboard-container {
-            max-width: 1200px;
+            max-width: 2000px;
             margin: 0 auto;
             padding: 30px;
         }
