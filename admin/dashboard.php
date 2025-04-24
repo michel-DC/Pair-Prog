@@ -1,0 +1,1 @@
+statistique, revenue, résumé géneral

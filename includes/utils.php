@@ -1,0 +1,1 @@
+fonctions utilitaires (prix, validation, etc.)

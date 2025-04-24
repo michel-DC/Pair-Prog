@@ -1,0 +1,1 @@
+<!-- page de details de la réservation -->
