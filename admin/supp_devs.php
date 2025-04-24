@@ -106,7 +106,7 @@ if (isset($_POST['supp_developpeur'])) {
             <div class="message error"><?= $error ?></div>
         <?php endif; ?>
 
-        <form action="" method="POST">
+        <form action="dashboard.php#supp-dev-section" method="POST">
             <div class="form-group">
                 <label for="id">Sélectionnez un développeur à supprimer</label>
                 <select name="id" id="id" required>

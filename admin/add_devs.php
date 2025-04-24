@@ -51,56 +51,98 @@ if (isset($_POST['ajt_developpeur'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un Développeur</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            padding: 20px;
+            font-family: "Space Grotesk", sans-serif;
             background-color: #f0f0f0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .form-container {
-            max-width: 600px;
-            margin: 0 auto;
+            width: 1000px;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ecedec;
+        }
+        .form-container h1 {
+            color: #151717;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-top: 30px;
+            margin-bottom: 25px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            color: #333;
+            margin-bottom: 10px;
+            color: #151717;
+            font-weight: 500;
+            font-size: 1.1rem;
         }
         input[type="text"], textarea {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px;
+            border: 1px solid #ecedec;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            transition: border-color 0.2s ease-in-out;
+            font-size: 1rem;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #2d79f3;
+            outline: none;
         }
         textarea {
-            height: 100px;
+            height: 150px;
+            resize: vertical;
         }
         .submit-btn {
             background-color: #2d79f3;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            transition: background-color 0.2s ease-in-out;
+            font-size: 1.1rem;
         }
         .submit-btn:hover {
             background-color: #1a5bbf;
         }
         .message {
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
             text-align: center;
+            font-weight: 500;
+            font-size: 1.1rem;
         }
         .success {
-            background-color: #e8f5e9;
-            color: #2e7d32;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ecedec;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            width: 100%;
         }
     </style>
 </head>
@@ -112,7 +154,7 @@ if (isset($_POST['ajt_developpeur'])) {
             <div class="message success"><?= $success ?></div>
         <?php endif; ?>
 
-        <form method="POST" enctype="multipart/form-data" action="add_devs.php">
+        <form method="POST" enctype="multipart/form-data" action="dashboard.php#add-dev-section">
             <div class="form-group">
                 <label for="fullname">Nom complet</label>
                 <input type="text" id="fullname" name="fullname" required>

@@ -24,12 +24,13 @@ $total_users = mysqli_fetch_assoc($result)['total'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | CodePair</title>
+    <title>CodePair | Admin Dashboard</title>
     <style>
+       @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: "Space Grotesk", sans-serif;
             background-color: #f0f0f0;
-            padding-left: 270px;
+            padding-left: 0px;
             margin: 0;
         }
         .dashboard-container {
@@ -84,15 +85,19 @@ $total_users = mysqli_fetch_assoc($result)['total'];
 </head>
 <body>
     <?php include '../includes/sidebar.php'; ?>
+
     <div id="add-dev-section" style="display: none;">
         <?php include 'add_devs.php'; ?>
     </div>
+
     <div id="see-dev-section" style="display: none;">
         <?php include '../devs.php'; ?>
     </div>
+
     <div id="supp-dev-section" style="display: none;">
         <?php include 'supp_devs.php'; ?>
     </div>
+
     <div id="edit-dev-section" style="display: none;">
         <?php include 'edit_devs.php'; ?>
     </div>
@@ -121,62 +126,41 @@ $total_users = mysqli_fetch_assoc($result)['total'];
     </div>
 
     <script>
-        document.getElementById('add-dev-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            var addDevSection = document.getElementById('add-dev-section');
-            var dashboardContainer = document.querySelector('.dashboard-container');
+    function showSection(sectionId) {
+        document.querySelectorAll('.dashboard-container, #add-dev-section, #see-dev-section, #supp-dev-section, #edit-dev-section')
+            .forEach(section => section.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+    }
 
-            if (addDevSection.style.display === 'none') {
-                addDevSection.style.display = 'block';
-                dashboardContainer.style.display = 'none';
-            } else {
-                addDevSection.style.display = 'none';
-                dashboardContainer.style.display = 'block';
-            }
-        });
+    // Navigation depuis sidebar
+    document.getElementById('add-dev-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        showSection('add-dev-section');
+    });
 
-        document.getElementById('see-dev-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            var seeDevSection = document.getElementById('see-dev-section');
-            var dashboardContainer = document.querySelector('.dashboard-container');
+    document.getElementById('see-dev-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        showSection('see-dev-section');
+    });
 
-            if (seeDevSection.style.display === 'none') {
-                seeDevSection.style.display = 'block';
-                dashboardContainer.style.display = 'none';
-            } else {
-                seeDevSection.style.display = 'none';
-                dashboardContainer.style.display = 'block';
-            }
-        });
+    document.getElementById('supp-dev-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        showSection('supp-dev-section');
+    });
 
-        document.getElementById('supp-dev-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            var suppDevSection = document.getElementById('supp-dev-section');
-            var dashboardContainer = document.querySelector('.dashboard-container');
+    document.getElementById('edit-dev-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        showSection('edit-dev-section');
+    });
 
-            if (suppDevSection.style.display === 'none') {
-                suppDevSection.style.display = 'block';
-                dashboardContainer.style.display = 'none';
-            } else {
-                suppDevSection.style.display = 'none';
-                dashboardContainer.style.display = 'block';
-            }
-        });
+    // Affiche automatiquement une section si l'ancre est dans l'URL
+    window.addEventListener('DOMContentLoaded', function() {
+        const anchor = window.location.hash;
+        if (anchor && document.querySelector(anchor)) {
+            showSection(anchor.substring(1));
+        }
+    });
+</script>
 
-        document.getElementById('edit-dev-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            var editDevSection = document.getElementById('edit-dev-section');
-            var dashboardContainer = document.querySelector('.dashboard-container');
-
-            if (editDevSection.style.display === 'none') {
-                editDevSection.style.display = 'block';
-                dashboardContainer.style.display = 'none';
-            } else {
-                editDevSection.style.display = 'none';
-                dashboardContainer.style.display = 'block';
-            }
-        });
-        
-    </script>
 </body>
 </html>

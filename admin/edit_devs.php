@@ -113,7 +113,7 @@ if (isset($_POST['edit_developpeur'])) {
         <?php endif; ?>
 
         <?php if (!isset($selected_developer)): ?>
-            <form action="" method="POST">
+            <form action="dashboard.php#edit-dev-section" method="POST">
                 <div class="form-group">
                     <label for="id">Sélectionnez un développeur à modifier</label>
                     <select name="id" id="id" required>
@@ -126,7 +126,7 @@ if (isset($_POST['edit_developpeur'])) {
                 <button type="submit" name="select_developpeur" class="btn">Sélectionner</button>
             </form>
         <?php else: ?>
-            <form action="dashboard.php" method="POST">
+            <form action="dashboard.php#edit-dev-section" method="POST">
                 <input type="hidden" name="id" value="<?= $selected_developer['id'] ?>">
                 
                 <div class="form-group">

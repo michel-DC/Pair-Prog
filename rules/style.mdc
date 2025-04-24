@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+change the style of this file to make it fit with the rest of the project (website)
+
+
+inspire you of these file [sidebar.php](mdc:includes/sidebar.php) or [register.php](mdc:connexion/register.php) and also [dashboard.php](mdc:admin/dashboard.php)
