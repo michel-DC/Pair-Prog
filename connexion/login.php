@@ -191,6 +191,7 @@
             </div>
             <button class="button-submit" name="login_user">Se Connecter</button>
             <p class="p">Vous n'avez pas de compte <span class="span"><a href="register.php">Créer en un</a></span></p>
+            <p class="p">Vous êtes administrateur ? <span class="span"><a href="login-admin.php">Connectez vous en tant que administrateur</a></span></p>
         </form>
     </section>
 
