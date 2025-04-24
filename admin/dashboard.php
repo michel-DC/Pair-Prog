@@ -27,61 +27,62 @@ $total_users = mysqli_fetch_assoc($result)['total'];
     <title>CodePair | Admin Dashboard</title>
     <link rel="shortcut icon" href="../assets/images/icon/codepair_icon.PNG" type="image/x-icon">
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
         body {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background-color: #f0f0f0;
             padding-left: 0px;
             margin: 0;
         }
         .dashboard-container {
-            max-width: 2000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 20px;
         }
         .dashboard-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .dashboard-header h1 {
-            color: #151717;
+            color: #333;
             font-weight: 600;
             font-size: 1.8rem;
+            margin: 0;
         }
         .stats-container {
-                display: flex;
-                gap: 15px;
-                flex-wrap: wrap;
-                margin-bottom: 30px;
-            }
-            .stat-card {
-                background: white;
-                padding: 10px 15px;
-                border-radius: 8px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-                text-align: center;
-                flex: 1;
-                min-width: 150px;
-                max-width: 180px;
-                border: 1px solid #ecedec;
-                transition: all 0.2s ease-in-out;
-                height: 80px;
-            }
-            .stat-card:hover {
-                border-color: #2d79f3;
-                background-color: #f8f9fa;
-            }
-            .stat-number {
-                font-size: 1.3rem;
-                color: #2d79f3;
-                font-weight: 600;
-                margin-bottom: 5px;
-            }
-            .stat-label {
-                color: #666;
-                font-size: 0.8rem;
-                font-weight: 500;
-            }
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            transition: all 0.2s ease-in-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .stat-number {
+            font-size: 1.5rem;
+            color: #2d79f3;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -92,7 +93,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
     </div>
 
     <div id="see-dev-section" style="display: none;">
-        <?php include '../devs.php'; ?>
+        <?php include 'devs.php'; ?>
     </div>
 
     <div id="supp-dev-section" style="display: none;">

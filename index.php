@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodePair - Plateforme de Réservation de Sessions de Pair Programming</title>
+    <link rel="shortcut icon" href="assets/images/icon/codepair_icon.PNG" type="image/x-icon">
     <style>
         * {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -13,21 +14,19 @@
         }
 
         body {
-            background-color: #0a0a0a;
-            color: #f5f5f7;
+            background-color: #ffffff;
+            color: #151717;
             line-height: 1.6;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23333" stroke-width="0.5"/></svg>');
-            background-size: 20px 20px;
         }
 
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
+            background-color: #ffffff;
             z-index: 1000;
             padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .header-container {
@@ -42,7 +41,7 @@
         .logo {
             font-size: 24px;
             font-weight: 600;
-            color: #fff;
+            color: #151717;
         }
 
         .logo span {
@@ -57,14 +56,14 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #f5f5f7;
+            color: #151717;
             font-size: 14px;
             font-weight: 500;
             transition: color 0.3s;
         }
 
         nav ul li a:hover {
-            color: #8a6eff;
+            color:rgb(153, 128, 252);
         }
 
         .container {
@@ -84,6 +83,7 @@
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 20px;
+            color: #151717;
         }
 
         .hero h1 span {
@@ -106,39 +106,7 @@
             font-size: 20px;
             max-width: 600px;
             margin: 0 auto 40px;
-            color: #a1a1a6;
-        }
-
-        .email-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .email-input {
-            flex: 1;
-            padding: 15px 20px;
-            border: none;
-            background-color: #1c1c1e;
-            color: #f5f5f7;
-            border-radius: 6px 0 0 6px;
-            font-size: 16px;
-        }
-
-        .cta-button {
-            padding: 15px 30px;
-            background-color: #8a6eff;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 0 6px 6px 0;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: #7659ff;
+            color: #5e5e5e;
         }
 
         .features-heading {
@@ -149,10 +117,11 @@
         .features-heading h2 {
             font-size: 36px;
             margin-bottom: 15px;
+            color: #151717;
         }
 
         .features-heading p {
-            color: #a1a1a6;
+            color: #5e5e5e;
             max-width: 700px;
             margin: 0 auto;
         }
@@ -165,35 +134,41 @@
         }
 
         .feature-card {
-            background-color: #1c1c1e;
+            background-color: #f8f9fa;
             border-radius: 12px;
             padding: 40px 30px;
             text-align: center;
             flex: 1;
             transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1.5px solid #ecedec;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
+            border: 1.5px solid #2d79f3;
         }
 
         .feature-card h3 {
             font-size: 24px;
             margin-bottom: 15px;
+            color: #151717;
         }
 
         .feature-card p {
-            color: #a1a1a6;
+            color: #5e5e5e;
         }
 
         .testimonials {
             text-align: center;
             padding: 80px 0;
+            background-color: #f8f9fa;
         }
 
         .testimonials h2 {
             font-size: 36px;
             margin-bottom: 50px;
+            color: #151717;
         }
 
         .testimonial-container {
@@ -204,25 +179,29 @@
         }
 
         .testimonial {
-            background-color: #1c1c1e;
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 12px;
             max-width: 350px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1.5px solid #ecedec;
         }
 
         .testimonial p {
             font-style: italic;
             margin-bottom: 20px;
+            color: #151717;
         }
 
         .testimonial cite {
-            color: #a1a1a6;
+            color: #5e5e5e;
         }
 
         footer {
-            background-color: #1c1c1e;
+            background-color: #f8f9fa;
             padding: 60px 0 30px;
             margin-top: 80px;
+            border-top: 1px solid #ecedec;
         }
 
         .footer-content {
@@ -241,6 +220,7 @@
         .footer-column h4 {
             font-size: 18px;
             margin-bottom: 20px;
+            color: #151717;
         }
 
         .footer-column ul {
@@ -252,13 +232,13 @@
         }
 
         .footer-column ul li a {
-            color: #a1a1a6;
+            color: #5e5e5e;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .footer-column ul li a:hover {
-            color: #8a6eff;
+            color: #2d79f3;
         }
 
         .social-media {
@@ -268,21 +248,21 @@
         }
 
         .social-media a {
-            color: #a1a1a6;
+            color: #5e5e5e;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .social-media a:hover {
-            color: #8a6eff;
+            color: #2d79f3;
         }
 
         .copyright {
             text-align: center;
-            color: #a1a1a6;
+            color: #5e5e5e;
             margin-top: 50px;
             padding-top: 20px;
-            border-top: 1px solid #333;
+            border-top: 1px solid #ecedec;
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;

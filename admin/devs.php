@@ -80,7 +80,7 @@ $result = mysqli_query($link, $query);
 </head>
 <body>
     <div class="form-container">
-        <h1>Les développeurs disponible 🟢</h1>
+        <h1>Les développeurs disponible 👨‍💻🟢</h1>
         <div class="developers-grid">
             <?php while($developpeur = mysqli_fetch_assoc($result)): ?>
                 <div class="developer-card">
