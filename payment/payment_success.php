@@ -1,1 +1,0 @@
-confirmation de paiement validé
