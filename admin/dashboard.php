@@ -1,4 +1,5 @@
 <?php require_once '../includes/auth.php'; ?>
+<?php $_SESSION['connecté'] = true;?>
 
 <?php
 // Connexion à la base de données

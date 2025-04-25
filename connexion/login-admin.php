@@ -243,24 +243,27 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
         }
     }
 
-    if (isset($error)):
+    if (isset($error)): // si l'erreur existe alors on affiche le message d'erreur
         echo "<div class='message error'>$error</div>";
     endif;
 
-    if (isset($success)):
+    if (isset($success)): // si le succès existe alors on affiche le message de succès
         echo "<div class='message success'>$success</div>";
     endif;
 
 
-    if (isset($_GET['erreur']) && $_GET['erreur'] === 'non_connecte') {
+    if (isset($_GET['erreur']) && $_GET['erreur'] === 'non_connecte') { // ici on vérifie si l'url contient login-admin.php OU /admin
     $chemin = $_SERVER['REQUEST_URI'];
 
-    // Si la page actuelle est login-admin.php OU si on vient de /admin
-    if (strpos($chemin, 'login-admin.php') !== false || strpos($chemin, '/admin') !== false) {
+    if (strpos($chemin, 'login-admin.php') !== false || strpos($chemin, '/admin') !== false) { // si la page actuelle est login-admin.php OU si on vient de /admin
         echo "<div class='message error'>Vous devez obligatoirement être connecté en tant qu'admin pour accéder à cette page</div>";
     } 
 }
-    
+    // gestion de la deconnexion 
+    if (isset($_GET['message']) && $_GET['message'] === 'deconnexion_admin') {
+        echo "<div class='message success'>Déconnexion réussie. À bientôt !</div>";
+    }
+
     ?>
 </body>
 </html>
