@@ -1,9 +1,13 @@
-<?php require_once '../includes/auth.php'; ?>
-<?php $_SESSION['connecté'] = true;?>
+<?php 
+require_once '../includes/auth.php'; 
+$_SESSION['connecté'] = true;
 
-<?php
+
 // Connexion à la base de données
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
+if (!$link) {
+    die("Erreur de connexion à la base de données: " . mysqli_connect_error());
+}
 
 // Récupérer le nombre de développeurs
 $query = "SELECT COUNT(*) as total FROM developpeurs";
@@ -14,11 +18,6 @@ $total_devs = mysqli_fetch_assoc($result)['total'];
 $query = "SELECT COUNT(*) as total FROM users";
 $result = mysqli_query($link, $query);
 $total_users = mysqli_fetch_assoc($result)['total'];
-
-// Récupérer le nombre de réservations - à faire
-// $query = "SELECT COUNT(*) as total FROM reservations";
-// $result = mysqli_query($link, $query);
-// $total_reservations = mysqli_fetch_assoc($result)['total'];
 
 ?>
 
@@ -40,6 +39,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            z-index: 20;
         }
         .dashboard-header {
             text-align: center;
@@ -50,7 +50,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .dashboard-header h1 {
-            color: #333;
+            color: #000000;
             font-weight: 600;
             font-size: 1.8rem;
             margin: 0;
@@ -95,10 +95,6 @@ $total_users = mysqli_fetch_assoc($result)['total'];
         <?php include 'add_devs.php'; ?>
     </div>
 
-    <div id="see-dev-section" style="display: none;">
-        <?php include 'devs.php'; ?>
-    </div>
-
     <div id="supp-dev-section" style="display: none;">
         <?php include 'supp_devs.php'; ?>
     </div>
@@ -106,11 +102,18 @@ $total_users = mysqli_fetch_assoc($result)['total'];
     <div id="edit-dev-section" style="display: none;">
         <?php include 'edit_devs.php'; ?>
     </div>
+
+    <div id="see-dev-section" style="display: none;">
+        <?php include 'devs.php'; ?>
+    </div>
+
+
     
     <div class="dashboard-container">
         <div class="dashboard-header">
             <h1>Tableau de Bord Administrateur</h1>
         </div>
+
 
         <div class="stats-container">
             <div class="stat-card">
@@ -121,13 +124,8 @@ $total_users = mysqli_fetch_assoc($result)['total'];
                 <div class="stat-number"><?= $total_users ?></div>
                 <div class="stat-label">Utilisateurs inscrits</div>
             </div>
-            <!-- <div class="stat-card">
-                <div class="stat-number"><?= $total_reservations ?></div>
-                <div class="stat-label">Réservations effectuées</div>
-            </div> -->
         </div>
 
-    
     </div>
 
     <script>
@@ -137,7 +135,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
         document.getElementById(sectionId).style.display = 'block';
     }
 
-    // Navigation depuis sidebar
+    // Navigation depuis sidebar         
     document.getElementById('add-dev-link').addEventListener('click', function(event) {
         event.preventDefault();
         showSection('add-dev-section');

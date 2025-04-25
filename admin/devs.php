@@ -9,23 +9,8 @@ $query = "SELECT * FROM developpeurs";
 $result = mysqli_query($link, $query);
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodePair | Développeurs Disponibles</title>
-    <link rel="shortcut icon" href="../assets/images/icon/codepair_icon.PNG" type="image/x-icon">
+
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.6;
-        }
 
         .container {
             max-width: 1200px;
@@ -119,24 +104,21 @@ $result = mysqli_query($link, $query);
             margin-bottom: 10px;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Les développeurs <span>disponibles</span></h1>
-        
-        <div class="developers-grid">
-            <?php while($dev = mysqli_fetch_assoc($result)): ?>
-                <div class="dev-card">
-                    <img class="dev-avatar" src="<?= str_replace('../', '', $dev['photo_profil']) ?>" alt="<?= $dev['fullname'] ?>">
-                    
-                    <div class="dev-content">
-                        <h3 class="dev-title"><?= $dev['fullname'] ?></h3>
-                        <p class="dev-description"><?= $dev['description'] ?></p>
-                        <div class="dev-stack">Stack : <?= $dev['stack'] ?></div>
-                    </div>
-                    
-            <?php endwhile; ?>
+
+<div class="container">
+    <h1>Les développeurs <span>disponibles</span></h1>
+<div class="developers-grid">
+    <?php while($dev = mysqli_fetch_assoc($result)): ?>
+        <div class="dev-card">
+            <img class="dev-avatar" src="<?= str_replace('../', '', $dev['photo_profil']) ?>" alt="<?= $dev['fullname'] ?>">
+            
+            <div class="dev-content">
+                <h3 class="dev-title"><?= $dev['fullname'] ?></h3>
+                <p class="dev-description"><?= $dev['description'] ?></p>
+                <div class="dev-stack">Stack : <?= $dev['stack'] ?></div>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    <?php endwhile; ?>
+</div>
+</div>
+

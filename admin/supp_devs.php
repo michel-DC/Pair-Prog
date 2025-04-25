@@ -35,70 +35,115 @@ if (isset($_POST['supp_developpeur'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supprimer un Développeur</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            padding: 20px;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 100px;
+            padding: 20px;
+        }
+
         .form-container {
             max-width: 600px;
             margin: 0 auto;
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 45px;
+            color: #151717;
+        }
+
+        h2 span {
+            color: #8a6eff;
+            position: relative;
+        }
+
+        h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #8a6eff;
+            border-radius: 3px;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
         label {
             display: block;
-            margin-bottom: 5px;
-            color: #333;
+            margin-bottom: 8px;
+            color: #111827;
+            font-weight: 500;
         }
+
         select {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
             border-radius: 4px;
             background-color: white;
+            font-size: 0.9rem;
+            color: #4b5563;
         }
+
         .btn {
             background-color: #ff4444;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s ease;
         }
+
         .btn:hover {
             background-color: #cc0000;
         }
+
         .message {
-            padding: 10px;
+            padding: 12px;
             border-radius: 4px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
         }
+
         .success {
             background-color: #d4edda;
             color: #155724;
+            border: 1px solid #c3e6cb;
         }
+
         .error {
             background-color: #f8d7da;
             color: #721c24;
+            border: 1px solid #f5c6cb;
         }
     </style>
-</head>
-<body>
+
+<div class="container">
     <div class="form-container">
-        <h2>Supprimer un profil de développeur</h2>
+        <h2>Supprimer un <span>développeur</span></h2>
         
         <?php if (isset($success)): ?>
             <div class="message success"><?= $success ?></div>
@@ -121,5 +166,4 @@ if (isset($_POST['supp_developpeur'])) {
             <button type="submit" name="supp_developpeur" class="btn">Supprimer</button>
         </form>
     </div>
-</body>
-</html>
+</div>
