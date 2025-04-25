@@ -153,7 +153,7 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeOut 15s forwards;
+            animation: fadeOut 7s forwards;
         }
 
         @keyframes fadeOut {

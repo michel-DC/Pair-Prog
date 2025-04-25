@@ -1,3 +1,5 @@
+<?php require_once '../includes/auth.php'; ?>
+
 <?php
 // Connexion à la base de données
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");

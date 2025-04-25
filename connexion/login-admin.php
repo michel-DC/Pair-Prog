@@ -5,7 +5,7 @@ l'username et de password seront déja présents dans la base de données donc i
 si l'username et le password sont corrects alors on affiche un message de bienvenue et on redirige vers le dashboard admin
 
 si l'username et le password sont incorrects alors on affiche un message d'erreur et on redirige vers la page de login admin -->
-
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -160,7 +160,7 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeOut 15s forwards;
+            animation: fadeOut 7s forwards;
         }
 
         @keyframes fadeOut {
@@ -250,6 +250,16 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
     if (isset($success)):
         echo "<div class='message success'>$success</div>";
     endif;
+
+
+    if (isset($_GET['erreur']) && $_GET['erreur'] === 'non_connecte') {
+    $chemin = $_SERVER['REQUEST_URI'];
+
+    // Si la page actuelle est login-admin.php OU si on vient de /admin
+    if (strpos($chemin, 'login-admin.php') !== false || strpos($chemin, '/admin') !== false) {
+        echo "<div class='message error'>Vous devez obligatoirement être connecté en tant qu'admin pour accéder à cette page</div>";
+    } 
+}
     
     ?>
 </body>
