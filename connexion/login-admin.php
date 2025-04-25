@@ -40,6 +40,22 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
             align-self: flex-end;
         }
 
+        .span-purple {
+            color: #8a6eff;
+            position: relative;
+        }
+
+        .span-purple::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #8a6eff;
+            border-radius: 3px;
+        }
+
         .flex-column > label {
             color: #151717;
             font-weight: 600;
@@ -167,7 +183,13 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
 <body>
     <section>
         <form class="form" method="POST" action="login-admin.php">
-            <h1 style="text-align: center;" >Se connecter en admin</h1>
+        <a href="../index.php" class="home-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+        </a>
+            <h1 style="text-align: center;" >Se connecter en <span class="span-purple">admin</span></h1>
             <div class="flex-column">
                 <label>Nom d'utilisateur </label>
             </div>
