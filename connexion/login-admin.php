@@ -5,7 +5,9 @@ l'username et de password seront déja présents dans la base de données donc i
 si l'username et le password sont corrects alors on affiche un message de bienvenue et on redirige vers le dashboard admin
 
 si l'username et le password sont incorrects alors on affiche un message d'erreur et on redirige vers la page de login admin -->
-<?php session_start(); ?>
+<?php session_start(); 
+$_SESSION['role'] = ['admin'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +15,7 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se connecter en admin</title>
+    <link rel="shortcut icon" href="../assets/images/icon/codepair_icon.PNG" type="image/x-icon"></link>
     <style>
         body {
             display: flex;
@@ -179,7 +182,9 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
             color: #2e7d32;
         }
     </style>
+
 </head>
+
 <body>
     <section>
         <form class="form" method="POST" action="login-admin.php">

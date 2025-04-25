@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer un compte</title>
+    <link rel="shortcut icon" href="../assets/images/icon/codepair_icon.PNG" type="image/x-icon">
     <style>
         body {
             display: flex;
@@ -170,7 +171,7 @@
             background-color: #e8f5e9;
             color: #2e7d32;
         }
-    </style>
+    </link>
 </head>
 <body>
     <section>

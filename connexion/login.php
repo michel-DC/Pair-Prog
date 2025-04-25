@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+$_SESSION['role'] = ['user'];
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se connecter</title>
+    <link rel="shortcut icon" href="../assets/images/icon/codepair_icon.PNG" type="image/x-icon">
     <style>
         body {
             display: flex;
@@ -255,7 +259,15 @@
     endif;
 
     if (isset($_GET['erreur']) && $_GET['erreur'] === 'non_connecte') {
-        echo "<div class='message error'>Vous devez être connecté pour accéder à cette page, si vous ne possedez pas de compte, vous pouvez en créer un <a href='register.php'>ici</a></div>";
+        echo "<div class='message error'>Vous devez être connecté pour accéder à cette page, si vous ne possedez pas de compte, vous pouvez en créer un.</div>";
+    }
+
+    if (isset($_GET['erreur']) && $_GET['erreur'] === 'acces_refuse_user') {
+        echo "<div class='message error'>Vous n'avez pas les droits pour accéder à cette page, si vous êtes administrateur, vous pouvez vous connecter <a href='login-admin.php'>ici</a></div>";
+    }
+
+    if (isset($_GET['message']) && $_GET['message'] === 'deconnexion_user') {
+        echo "<div class='message success'>Déconnexion réussie. À bientôt !</div>";
     }
     
     ?>

@@ -15,4 +15,12 @@ if (!isset($_SESSION['connecté']) || $_SESSION['connecté'] !== true) { // vér
 
     exit();
 }
+
+$chemin = $_SERVER['REQUEST_URI'];
+
+if (strpos($chemin, '/admin') !== false && $_SESSION['role'] !== 'admin') {
+    // Un utilisateur "normal" essaie d'accéder à une page admin
+    header('Location: ../connexion/login.php?erreur=acces_refuse_user');
+    exit();
+}
 ?>

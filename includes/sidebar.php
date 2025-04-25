@@ -50,7 +50,7 @@
         </ul>
     </nav>
     <div class="sidebar-footer">
-        <a href="../connexion/logout.php" class="nav-link logout-link">
+        <a href="../connexion/logout-admin.php" class="nav-link logout-link">
             <span class="nav-icon">╰┈➤🚪</span>
             <span class="nav-text">Déconnexion</span>
         </a>
