@@ -1,34 +1,30 @@
 <?php
 session_start();
 
+$chemin = $_SERVER['REQUEST_URI']; // on récupère l'URL ou l'user se situe par exemple https://co-working.michel.djoumessi.mmi-velizy.fr/connexion/login.php et on le stocke dans la variable $chemin -> ou je l'ai appris https://www.php.net/manual/fr/reserved.variables.server.php
 
 if (!isset($_SESSION['connecté']) || $_SESSION['connecté'] !== true) { // vérifier si l'utilisateur est connecté
-    
-    $chemin = $_SERVER['REQUEST_URI']; // ici on récupère l'url ou l'utulisateur est par exemple https://co-working.michel.djoumessi.mmi-velizy.fr/connexion/login.php et on le stocke dans la variable $chemin -> ou je l'ai appris https://www.php.net/manual/fr/reserved.variables.server.php
 
-    if (strpos($chemin, '/admin') !== false) { // si l'url contient /admin alors on redirige vers la page de connexion admin
+    if (strpos($chemin, 'index.php') !== false) { // si l'utilisateur veut aller sur index.php, on le laisse passer sans être connecté
+        
+    } else if (strpos($chemin, '/admin') !== false) { // si l'utilisateur veut aller sur /admin, on le redirige vers la page de connexion admin
         header('Location: ../connexion/login-admin.php?erreur=non_connecte');
-
-    } else { // si l'url ne contient pas /admin alors on redirige vers la page de connexion utilisateur normal
+        exit();
+    } else if (strpos($chemin, 'devs.php') !== false) { // si l'utilisateur veut aller sur devs.php, on le redirige vers la page de connexion utilisateur normal
         header('Location: ../connexion/login.php?erreur=non_connecte');
+        exit();
     }
-
-    exit();
 }
 
-$chemin2 = $_SERVER['REQUEST_URI'];
-
-if (strpos($chemin2, '/admin') !== false && $_SESSION['role'] !== 'admin') {
-    // Un utilisateur "normal" essaie d'accéder à une page admin
+// Si l'utilisateur connecté est "user" mais veut aller dans admin
+if (strpos($chemin, '/admin') !== false && isset($_SESSION['role']) && $_SESSION['role'] !== 'admin') {
     header('Location: ../connexion/login.php?erreur=acces_refuse_user');
     exit();
 }
 
-
-$chemin3 = $_SERVER['REQUEST_URI'];
-
-if (strpos($chemin3, 'devs.php') !== false && $_SESSION['role'] === 'admin') { // si l'url contient devs.php et que l'utilisateur est admin alors on redirige vers la page de connexion utilisateur
+// Si l'utilisateur connecté est "admin" mais veut aller sur devs.php
+if (strpos($chemin, 'devs.php') !== false && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     header('Location: ../connexion/login.php?erreur=acces_interdit_admin');
     exit();
 }
-?> 
+?>

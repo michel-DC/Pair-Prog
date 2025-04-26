@@ -1,4 +1,9 @@
-<?php require_once 'includes/auth.php'; 
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once 'includes/auth.php'; 
 
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
 
@@ -364,21 +369,25 @@ $result_user = mysqli_query($link, $query_user);
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="devs.php">Réserver un développeur</a></li>
-
-                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] !== true): ?>
-                    <li><a href="../connexion/login.php">Connexion</a></li>
+                    <?php if (!isset($_SESSION['connecté']) || $_SESSION['connecté'] !== true): ?>
+                        <li><a href="../connexion/login.php">Connexion</a></li>
                     <?php endif; ?>
 
+
                     <li>
-                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] = 'user'): ?>
+                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] == 'user'): ?>
                     <div class="user-dropdown">
                         <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         </svg>
                         <ul class="dropdown-menu">
+
+                        <?php if (isset($result_user) && $result_user): ?>
                             <?php while($user = mysqli_fetch_assoc($result_user)): ?>
-                            <li>Bienvenue <span class="user-name"><?= $user['fullname'] ?></span></li>
-                            <?php endwhile; ?>
+                            <li>Bienvenue <span class="user-name"><?= htmlspecialchars($user['fullname']) ?></span></li>
+                             <?php endwhile; ?>
+                        <?php endif; ?>
+
                             <li><a href="../user/mes-reserv.php">Mes Réservations</a></li>
                             <li><a href="../connexion/logout-user.php">Se Déconnecter</a></li>
                         </ul>
