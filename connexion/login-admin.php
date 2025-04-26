@@ -6,7 +6,6 @@ si l'username et le password sont corrects alors on affiche un message de bienve
 
 si l'username et le password sont incorrects alors on affiche un message d'erreur et on redirige vers la page de login admin -->
 <?php session_start(); 
-$_SESSION['role'] = ['admin'];
 ?>
 
 <!DOCTYPE html>
@@ -237,6 +236,7 @@ $_SESSION['role'] = ['admin'];
                 if ($password === $user['password']) {  
                     $_SESSION['connecté'] = true;
                     $_SESSION['username'] = $username;
+                    $_SESSION['role'] = 'admin';
                     $success = "Vous êtes connecté en tant que $username, redirection en cours...";
                     echo "<meta http-equiv='refresh' content='3;url=../admin/dashboard.php'>";
                 } else {

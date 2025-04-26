@@ -8,6 +8,9 @@ session_start();
 // On vide toutes les variables de session
 $_SESSION = array();
 
+// supprimer les variables de sessions
+session_unset();
+
 // On détruit la session
 session_destroy();
 

@@ -1,6 +1,4 @@
 <?php session_start();
-$_SESSION['role'] = ['user'];
-
 ?>
 
 <!DOCTYPE html>
@@ -239,6 +237,7 @@ $_SESSION['role'] = ['user'];
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['connecté'] = true;
                     $_SESSION['email'] = $email;
+                    $_SESSION['role'] = ['user'];
                     $success = "Vous êtes connecté en tant que $email, redirection en cours...";
                     echo "<meta http-equiv='refresh' content='3;url=/devs.php'>";
                 } else {
@@ -268,6 +267,10 @@ $_SESSION['role'] = ['user'];
 
     if (isset($_GET['message']) && $_GET['message'] === 'deconnexion_user') {
         echo "<div class='message success'>Déconnexion réussie. À bientôt !</div>";
+    }
+
+    if (isset($_GET['erreur']) && $_GET['erreur'] === 'acces_interdit_admin') {
+        echo "<div class='message error'>Vous devez être connecté en tant qu'utilisateur pour accéder à cette page.</div>";
     }
     
     ?>

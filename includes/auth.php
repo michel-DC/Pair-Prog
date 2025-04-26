@@ -16,11 +16,19 @@ if (!isset($_SESSION['connecté']) || $_SESSION['connecté'] !== true) { // vér
     exit();
 }
 
-$chemin = $_SERVER['REQUEST_URI'];
+$chemin2 = $_SERVER['REQUEST_URI'];
 
-if (strpos($chemin, '/admin') !== false && $_SESSION['role'] !== 'admin') {
+if (strpos($chemin2, '/admin') !== false && $_SESSION['role'] !== 'admin') {
     // Un utilisateur "normal" essaie d'accéder à une page admin
     header('Location: ../connexion/login.php?erreur=acces_refuse_user');
     exit();
 }
-?>
+
+
+$chemin3 = $_SERVER['REQUEST_URI'];
+
+if (strpos($chemin3, 'devs.php') !== false && $_SESSION['role'] === 'admin') { // si l'url contient devs.php et que l'utilisateur est admin alors on redirige vers la page de connexion utilisateur
+    header('Location: ../connexion/login.php?erreur=acces_interdit_admin');
+    exit();
+}
+?> 

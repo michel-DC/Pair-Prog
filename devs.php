@@ -1,12 +1,16 @@
-<?php require_once 'includes/auth.php'; ?>
+<?php require_once 'includes/auth.php'; 
 
-<?php
 // Connexion à la base de données
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
 
 // Récupérer tous les développeurs
 $query = "SELECT * FROM developpeurs";
+
+$query_user = "SELECT fullname FROM users";
+
 $result = mysqli_query($link, $query);
+
+$result_user = mysqli_query($link, $query_user);
 ?>
 
 <!DOCTYPE html>
@@ -277,6 +281,9 @@ $result = mysqli_query($link, $query);
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         </svg>
                      <ul class="dropdown-menu">
+                            <?php while($user = mysqli_fetch_assoc($result_user)): ?>
+                            <li>Bienvenue <span class="user-name"><?= $user['fullname'] ?></span></li>
+                            <?php endwhile; ?>
                             <li><a href="../user/mes-reserv.php">Mes Réservations</a></li>
                             <li><a href="../connexion/logout-user.php">Se Déconnecter</a></li>
                         </ul>
