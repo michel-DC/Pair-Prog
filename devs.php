@@ -272,7 +272,9 @@ $result_user = mysqli_query($link, $query_user);
 
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="devs.php">Réserver un développeur</a></li>
+                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] !== true): ?>
                     <li><a href="../connexion/login.php">Connexion</a></li>
+                    <?php endif; ?>
 
                     <li>
                     <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] = 'user'): ?>

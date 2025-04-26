@@ -1,3 +1,12 @@
+<?php require_once 'includes/auth.php'; 
+
+$link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
+
+$query_user = "SELECT fullname FROM users";
+
+$result_user = mysqli_query($link, $query_user);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -65,6 +74,57 @@
         nav ul li a:hover {
             color:rgb(153, 128, 252);
         }
+
+                /* dropdown menu */
+                .user-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        .user-icon {
+            color: #333;
+            transition: transform 0.2s ease;
+        }
+
+        .user-dropdown:hover .user-icon {
+            transform: scale(1.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 10px 0;
+            width: 180px;
+            display: none;
+            z-index: 100;
+        }
+
+        .user-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            padding: 10px 20px;
+        }
+
+        .dropdown-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: #f2f2f2;
+        }
+        /* dropdown mennu */
 
         .container {
             max-width: 1200px;
@@ -304,7 +364,28 @@
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="devs.php">Réserver un développeur</a></li>
+
+                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] !== true): ?>
                     <li><a href="../connexion/login.php">Connexion</a></li>
+                    <?php endif; ?>
+
+                    <li>
+                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] = 'user'): ?>
+                    <div class="user-dropdown">
+                        <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                        <ul class="dropdown-menu">
+                            <?php while($user = mysqli_fetch_assoc($result_user)): ?>
+                            <li>Bienvenue <span class="user-name"><?= $user['fullname'] ?></span></li>
+                            <?php endwhile; ?>
+                            <li><a href="../user/mes-reserv.php">Mes Réservations</a></li>
+                            <li><a href="../connexion/logout-user.php">Se Déconnecter</a></li>
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+                    </li>
+
                 </ul>
             </nav>
         </div>
