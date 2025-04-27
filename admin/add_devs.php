@@ -163,6 +163,20 @@ if (isset($_POST['ajt_developpeur'])) {
             border-radius: 4px;
             background-color: white;
         }
+
+        .language-icon {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: border-color 0.2s ease;
+        }
+
+        .language-icon.selectionne {
+            border-color: #8a6eff;
+        }
     </style>
 
 <div class="container">
@@ -184,7 +198,17 @@ if (isset($_POST['ajt_developpeur'])) {
             
             <div class="form-group">
                 <label for="stack">Stack technique</label>
-                <input type="text" id="stack" name="stack" required>
+                <div id="selection-langages">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="HTML" alt="HTML" class="language-icon">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="CSS" alt="CSS" class="language-icon">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="Javascript" alt="Javascript" class="language-icon">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="PHP" alt="PHP" class="language-icon">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="SQL" alt="SQL" class="language-icon">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="ReactJS" alt="ReactJS" class="language-icon">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="VueJS" alt="VueJS" class="language-icon">
+                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="NextJS" alt="NextJS" class="language-icon">
+                </div>
+                <input type="hidden" id="stack" name="stack">
             </div>
             
             <div class="form-group">
@@ -201,3 +225,28 @@ if (isset($_POST['ajt_developpeur'])) {
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const lesLangages = document.getElementById('stack'); // on récupère l'id du champ caché
+        const langagesSelectionne = []; // les langages sélectionnés dans un tableau
+
+        document.querySelectorAll('.language-icon').forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                this.classList.toggle('selectionne'); // au clic d'une icône de langage, on lui donne la propriété de sélectionné
+
+                if (this.classList.contains('selectionne')) { // si le langage est sélectionné, il est ajouté au tableau
+                    langagesSelectionne.push(lang);
+                } else {
+                    const index = langagesSelectionne.indexOf(lang);
+                    if (index !== -1) { // sinon il est supprimé
+                        langagesSelectionne.splice(index, 1);
+                    }
+                }
+
+                lesLangages.value = langagesSelectionne.join(', '); // les langages sélectionnés sont joints dans une chaîne de caractères séparée par une virgule
+            });
+        });
+    });
+</script>
