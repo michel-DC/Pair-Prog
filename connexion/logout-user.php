@@ -1,19 +1,13 @@
-page de deconnexion
-
-<!-- logout button -> https://uiverse.io/Jules-gitclerc/quiet-donkey-50 -->
-
 <?php
 session_start();
 
-// On vide toutes les variables de session
-$_SESSION = array();
+// Vider toutes les variables de session
+$_SESSION = [];
 
-// supprimer les variables de sessions
-session_unset();
-
-// On détruit la session
+// Détruire la session
 session_destroy();
 
-// Redirection vers la page de login admin
-header("Location: login.php?message=deconnexion_user");
+// Rediriger vers la page de connexion
+header('Location: login.php?message=deconnexion_user');
 exit();
+?>

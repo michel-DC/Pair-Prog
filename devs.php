@@ -1,16 +1,13 @@
-<?php require_once 'includes/auth.php'; 
+<?php 
+require_once 'includes/auth.php'; 
 
 // Connexion à la base de données
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
 
 // Récupérer tous les développeurs
 $query = "SELECT * FROM developpeurs";
-
-$query_user = "SELECT fullname FROM users";
-
 $result = mysqli_query($link, $query);
 
-$result_user = mysqli_query($link, $query_user);
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +118,6 @@ $result_user = mysqli_query($link, $query_user);
         .dropdown-menu li a {
             text-decoration: none;
             color: #333;
-            font-weight: 500;
         }
 
         .dropdown-menu li:hover {
@@ -260,6 +256,36 @@ $result_user = mysqli_query($link, $query_user);
                 gap: 15px;
             }
         }
+
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px auto;
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeOut 7s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
     </style>
 </head>
 <body>
@@ -272,20 +298,20 @@ $result_user = mysqli_query($link, $query_user);
 
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="devs.php">Réserver un développeur</a></li>
-                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] !== true): ?>
-                    <li><a href="../connexion/login.php">Connexion</a></li>
+                    <?php if (empty($_SESSION['connecté'])): ?>
+                        <li><a href="../connexion/login.php">Connexion</a></li>
                     <?php endif; ?>
 
                     <li>
-                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] = 'user'): ?>
+                    <?php if (isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] === 'user'): ?>
                     <div class="user-dropdown">
                         <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         </svg>
                      <ul class="dropdown-menu">
-                            <?php while($user = mysqli_fetch_assoc($result_user)): ?>
-                            <li>Bienvenue <span class="user-name"><?= $user['fullname'] ?></span></li>
-                            <?php endwhile; ?>
+                        <?php if (isset($_SESSION['fullname'])): ?>
+                            <li>Bienvenue <span class="user-name"><?= htmlspecialchars($_SESSION['fullname']) ?></span></li> <!-- html special char sert à mettre du html dans du php pour conserver leur signification https://www.php.net/manual/fr/function.htmlspecialchars.php -->
+                        <?php endif; ?>
                             <li><a href="../user/mes-reserv.php">Mes Réservations</a></li>
                             <li><a href="../connexion/logout-user.php">Se Déconnecter</a></li>
                         </ul>
@@ -323,6 +349,12 @@ $result_user = mysqli_query($link, $query_user);
             <?php endwhile; ?>
         </div>
     </div>
+
+    <?php
+    if (isset($_GET['erreur']) && $_GET['erreur'] === 'deja_connecte_users') {
+        echo "<div class='message error'>Vous êtes déjà connecté, rendez-vous sur la page de réservation.</div>";
+    }
+    ?>
 
 </body>
 </html>

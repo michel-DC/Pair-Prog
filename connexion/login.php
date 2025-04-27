@@ -1,6 +1,35 @@
-<?php session_start();
-?>
+<?php 
+session_start(); 
+$link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
 
+if (isset($_POST['login_user'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($link, $query);
+
+    
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            $user = mysqli_fetch_assoc($result);
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['connecté'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['role'] = 'user';
+                $_SESSION['fullname'] = $user['fullname'];
+                $success = "Vous êtes connecté en tant que $email, redirection en cours...";
+                header('Location: /devs.php');
+                exit();
+            } else {
+                $error = "Mot de passe incorrect";
+            }
+        } else {
+            $error = "Ton compte n'existe pas, sorry :(";
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -208,13 +237,6 @@
                 <input placeholder="Entrer votre Mot de passe" class="input" type="password" name="password">
             </div>
 
-            <div class="flex-row">
-                <div>
-                    <input type="radio">
-                    <label>Se souvenir de moi </label>
-                </div>
-                <span class="span">Mot de passe oublié ?</span>
-            </div>
             <button class="button-submit" name="login_user">Se Connecter</button>
             <p class="p">Vous n'avez pas de compte <span class="span"><a href="register.php">Créer en un</a></span></p>
             <p class="p">Vous êtes administrateur ? <span class="span"><a href="login-admin.php">Connectez vous en tant que administrateur</a></span></p>
@@ -222,32 +244,6 @@
     </section>
 
     <?php
-    $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
-
-    if (isset($_POST['login_user'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-    
-        $query = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($link, $query);
-        
-        if ($result) {
-            if (mysqli_num_rows($result) > 0) {
-                $user = mysqli_fetch_assoc($result);
-                if (password_verify($password, $user['password'])) {
-                    $_SESSION['connecté'] = true;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['role'] = ['user'];
-                    $success = "Vous êtes connecté en tant que $email, redirection en cours...";
-                    echo "<meta http-equiv='refresh' content='3;url=/devs.php'>";
-                } else {
-                    $error = "Mot de passe incorrect";
-                }
-            } else {
-                $error = "Ton compte n'existe pas, sorry :(";
-            }
-        }
-    }
 
     if (isset($error)):
         echo "<div class='message error'>$error</div>";

@@ -1,3 +1,27 @@
+<?php
+require_once '../includes/auth.php';
+
+$link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
+
+
+    if (isset($_POST['register_user'])) {
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
+
+        if ($_POST['password'] != $_POST['password_confirm']) {
+            $error_password = "Les mots de passe ne correspondent pas, veuillez réessayer";
+        }
+    
+        $query = "INSERT INTO users (fullname, email, password) VALUES ('$fullname', '$email', '$password')";
+        if (mysqli_query($link, $query)) {
+            $success = "Félicitations $fullname, votre compte a bien été créé :), vous pouvez maintenant vous connecter";
+        } else {
+            $error = "Malheuresement, il y a une erreur, veuillez réessayer";
+        }
+    }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -171,8 +195,10 @@
             background-color: #e8f5e9;
             color: #2e7d32;
         }
-    </link>
+    </style>
+
 </head>
+
 <body>
     <section>
         <form class="form" method="POST" action="register.php">
@@ -232,26 +258,6 @@
     </section>
 
     <?php
-
-    $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
-
-
-    if (isset($_POST['register_user'])) {
-        $fullname = $_POST['fullname'];
-        $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
-
-        if ($_POST['password'] != $_POST['password_confirm']) {
-            $error_password = "Les mots de passe ne correspondent pas, veuillez réessayer";
-        }
-    
-        $query = "INSERT INTO users (fullname, email, password) VALUES ('$fullname', '$email', '$password')";
-        if (mysqli_query($link, $query)) {
-            $success = "Félicitations $fullname, votre compte a bien été créé :)";
-        } else {
-            $error = "Malheuresement, il y a une erreur, veuillez réessayer";
-        }
-    }
 
     if (isset($error)): 
         echo "<div class='message error'>$error</div>";

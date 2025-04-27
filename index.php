@@ -1,15 +1,12 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 require_once 'includes/auth.php'; 
 
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
 
-$query_user = "SELECT fullname FROM users";
+// $query_user = "SELECT fullname FROM users";
 
-$result_user = mysqli_query($link, $query_user);
+// $result_user = mysqli_query($link, $query_user);
 ?>
 
 <!DOCTYPE html>
@@ -382,10 +379,8 @@ $result_user = mysqli_query($link, $query_user);
                         </svg>
                         <ul class="dropdown-menu">
 
-                        <?php if (isset($result_user) && $result_user): ?>
-                            <?php while($user = mysqli_fetch_assoc($result_user)): ?>
-                            <li>Bienvenue <span class="user-name"><?= htmlspecialchars($user['fullname']) ?></span></li>
-                             <?php endwhile; ?>
+                        <?php if (isset($_SESSION['fullname'])): ?>
+                            <li>Bienvenue <span class="user-name"><?= $_SESSION['fullname'] ?></span></li>
                         <?php endif; ?>
 
                             <li><a href="../user/mes-reserv.php">Mes Réservations</a></li>

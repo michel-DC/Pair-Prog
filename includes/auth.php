@@ -22,6 +22,11 @@ if (strpos($chemin, '/admin') !== false && isset($_SESSION['role']) && $_SESSION
     exit();
 }
 
+if (strpos($chemin, 'connexion/login.php') !== false && isset($_SESSION['role']) && $_SESSION['role'] === 'user') {
+    header('Location: /devs.php?erreur=deja_connecte_user'); // Redirige vers devs.php si déjà connecté
+    exit();
+}
+
 // Si l'utilisateur connecté est "admin" mais veut aller sur devs.php
 if (strpos($chemin, 'devs.php') !== false && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     header('Location: ../connexion/login.php?erreur=acces_interdit_admin');
