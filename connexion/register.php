@@ -177,7 +177,7 @@ $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist",
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeOut 7s forwards;
+            animation: fadeOut 5s forwards;
         }
 
         @keyframes fadeOut {
@@ -270,6 +270,10 @@ $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist",
     if (isset($error_password)):
         echo "<div class='message error'>$error_password</div>";
     endif; 
+
+    if (isset($_GET['erreur']) && $_GET['erreur'] === 'deja_connecte_user') {
+        echo "<div class='message error'>Vous êtes déjà connecté, si vous voulez changer de compte, déconnectez-vous d'abord</div>";
+    }
 
     ?>
 </body>

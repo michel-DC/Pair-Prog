@@ -162,7 +162,7 @@ si l'username et le password sont incorrects alors on affiche un message d'erreu
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeOut 7s forwards;
+            animation: fadeOut 5s forwards;
         }
 
         @keyframes fadeOut {

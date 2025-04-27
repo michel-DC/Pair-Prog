@@ -1,6 +1,10 @@
 <?php 
 require_once 'includes/auth.php'; 
 
+if (isset($_GET['erreur']) && $_GET['erreur'] === 'deja_connecte_user') {
+    echo "<div class='message error'>Vous êtes déjà connecté, si vous voulez changer de compte, déconnectez-vous d'abord</div>";
+}
+
 // Connexion à la base de données
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
 
@@ -258,9 +262,11 @@ $result = mysqli_query($link, $query);
         }
 
         .message {
+            z-index: 20;
             padding: 10px;
             border-radius: 5px;
             margin: 10px auto;
+            margin-top: 100px;
             text-align: center;
             width: 90%;
             max-width: 450px;
@@ -268,7 +274,7 @@ $result = mysqli_query($link, $query);
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeOut 7s forwards;
+            animation: fadeOut 5s forwards;
         }
 
         @keyframes fadeOut {
@@ -343,18 +349,12 @@ $result = mysqli_query($link, $query);
                     </div>
                     
                     <div class="action-bar">
-                        <button class="reserve-btn" onclick="reserverDev(<?= $dev['id'] ?>)">Réserver 👨‍💻</button>
+                        <button class="reserve-btn">Réserver 👨‍💻</button>
                     </div>
                 </div>
             <?php endwhile; ?>
         </div>
     </div>
-
-    <?php
-    if (isset($_GET['erreur']) && $_GET['erreur'] === 'deja_connecte_users') {
-        echo "<div class='message error'>Vous êtes déjà connecté, rendez-vous sur la page de réservation.</div>";
-    }
-    ?>
 
 </body>
 </html>

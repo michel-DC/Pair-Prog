@@ -86,6 +86,36 @@ $total_users = mysqli_fetch_assoc($result)['total'];
             font-size: 0.9rem;
             font-weight: 500;
         }
+
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px auto;
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeOut 4s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
     </style>
 </head>
 <body>
@@ -127,6 +157,12 @@ $total_users = mysqli_fetch_assoc($result)['total'];
         </div>
 
     </div>
+
+    <?php
+    if (isset($_GET['erreur']) && $_GET['erreur'] === 'acces_interdit_admin') {
+        echo "<div class='message error'>Vous devez être connecté en tant qu'utilisateur pour accéder à cette page, déconnectez-vous d'abord.</div>";
+    }
+    ?>
 
     <script>
     function showSection(sectionId) {

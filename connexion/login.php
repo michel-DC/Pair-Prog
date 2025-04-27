@@ -1,5 +1,11 @@
 <?php 
 session_start(); 
+
+if (isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] === 'user') {
+    header('Location: ../devs.php?erreur=deja_connecte_user');
+    exit();
+}
+
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
 
 if (isset($_POST['login_user'])) {
@@ -184,7 +190,7 @@ if (isset($_POST['login_user'])) {
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeOut 7s forwards;
+            animation: fadeOut 5s forwards;
         }
 
         @keyframes fadeOut {
@@ -263,10 +269,6 @@ if (isset($_POST['login_user'])) {
 
     if (isset($_GET['message']) && $_GET['message'] === 'deconnexion_user') {
         echo "<div class='message success'>Déconnexion réussie. À bientôt !</div>";
-    }
-
-    if (isset($_GET['erreur']) && $_GET['erreur'] === 'acces_interdit_admin') {
-        echo "<div class='message error'>Vous devez être connecté en tant qu'utilisateur pour accéder à cette page.</div>";
     }
     
     ?>

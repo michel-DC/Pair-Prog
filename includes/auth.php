@@ -16,14 +16,17 @@ if (!isset($_SESSION['connecté']) || $_SESSION['connecté'] !== true) { // vér
     }
 }
 
-// Si l'utilisateur connecté est "user" mais veut aller dans admin
-if (strpos($chemin, '/admin') !== false && isset($_SESSION['role']) && $_SESSION['role'] !== 'admin') {
-    header('Location: ../connexion/login.php?erreur=acces_refuse_user');
+// Si l'utilisateur connecté est "user" mais veut se connecter, je le bloque et redirige vers la page devs.php avec un message d'erreur
+if (strpos($chemin, 'connexion/login.php') !== false && isset($_SESSION['connecté']) && $_SESSION['connecté'] === true && $_SESSION['role'] === 'user') {
+    // Redirection vers la page devs.php si l'utilisateur est déjà connecté
+    header('Location: ../devs.php?erreur=deja_connecte_user'); 
     exit();
 }
 
-if (strpos($chemin, 'connexion/login.php') !== false && isset($_SESSION['role']) && $_SESSION['role'] === 'user') {
-    header('Location: /devs.php?erreur=deja_connecte_user'); // Redirige vers devs.php si déjà connecté
+
+// Si l'utilisateur connecté est "user" mais veut aller dans admin
+if (strpos($chemin, '/admin') !== false && isset($_SESSION['role']) && $_SESSION['role'] !== 'admin') {
+    header('Location: ../connexion/login.php?erreur=acces_refuse_user');
     exit();
 }
 
