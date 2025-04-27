@@ -7,7 +7,7 @@ $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist",
 // Récupérer la liste des développeurs
 $query = "SELECT id, fullname FROM developpeurs ORDER BY fullname ASC";
 $result = mysqli_query($link, $query);
-$developers = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$developpeurs = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 // Traitement du formulaire de suppression
 if (isset($_POST['supp_developpeur'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['supp_developpeur'])) {
             // Rafraîchir la liste des développeurs après suppression
             $query = "SELECT id, fullname FROM developpeurs ORDER BY fullname ASC";
             $result = mysqli_query($link, $query);
-            $developers = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            $developpeurs = mysqli_fetch_all($result, MYSQLI_ASSOC);
         } else {
             $error = "Erreur lors de la suppression du développeur.";
         }
@@ -158,8 +158,8 @@ if (isset($_POST['supp_developpeur'])) {
                 <label for="id">Sélectionnez un développeur à supprimer</label>
                 <select name="id" id="id" required>
                     <option value="">-- Choisissez un développeur --</option>
-                    <?php foreach ($developers as $developer): ?>
-                        <option value="<?= $developer['id'] ?>"><?= $developer['fullname'] ?></option>
+                    <?php foreach ($developpeurs as $developpeur): ?>
+                        <option value="<?= $developpeur['id'] ?>"><?= $developpeur['fullname'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

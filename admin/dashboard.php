@@ -131,6 +131,7 @@ while ($row = mysqli_fetch_assoc($result4)) {
 <div id="supp-dev-section" style="display: none;"><?php include 'supp_devs.php'; ?></div>
 <div id="edit-dev-section" style="display: none;"><?php include 'edit_devs.php'; ?></div>
 <div id="see-dev-section" style="display: none;"><?php include 'devs.php'; ?></div>
+<div id="see-user-section" style="display: none;"><?php include 'user.php'; ?></div>
 
 <div class="dashboard-container">
     <div class="dashboard-header">
@@ -165,7 +166,7 @@ if (isset($_GET['erreur']) && $_GET['erreur'] === 'acces_interdit_admin') {
 
 <script>
 function showSection(sectionId) {
-    document.querySelectorAll('.dashboard-container, #add-dev-section, #see-dev-section, #supp-dev-section, #edit-dev-section')
+    document.querySelectorAll('.dashboard-container, #add-dev-section, #see-dev-section, #supp-dev-section, #edit-dev-section, #see-user-section')
         .forEach(section => section.style.display = 'none');
     document.getElementById(sectionId).style.display = 'block';
 }
@@ -187,6 +188,11 @@ document.getElementById('edit-dev-link').addEventListener('click', function(even
     event.preventDefault();
     showSection('edit-dev-section');
 });
+document.getElementById('see-user-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    showSection('see-user-section');
+});
+
 
 // Gestion de l'ancre dans l'URL
 window.addEventListener('DOMContentLoaded', function() {
