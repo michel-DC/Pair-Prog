@@ -1,6 +1,6 @@
 <aside class="sidebar">
     <div class="sidebar-header">
-        <h2>Tableau de Bord Administrateur</h2>
+        <h3>Tableau de Bord Administrateur</h3>
         <button id="toggle-sidebar" class="toggle-btn">☰</button>
     </div>
     <nav class="sidebar-nav">
@@ -79,7 +79,7 @@
             padding: 10px;
         }
         .sidebar .nav-text,
-        .sidebar-header h2 {
+        .sidebar-header h3 {
             display: none;
         }
         .sidebar .nav-icon {
@@ -97,7 +97,7 @@
     .sidebar.collapsed .nav-text {
         display: none;
     }
-    .sidebar.collapsed .sidebar-header h2 {
+    .sidebar.collapsed .sidebar-header h3 {
         display: none;
     }
     .sidebar-header {

@@ -128,6 +128,22 @@ $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist",
         }
         /* dropdown mennu */
 
+        .user-name {
+            color: #8a6eff;
+            position: relative;
+        }
+
+        .user-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #8a6eff;
+            border-radius: 3px;
+        }
+
         .container {
             max-width: 1200px;
             margin-top: 150px;

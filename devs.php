@@ -128,6 +128,22 @@ $result = mysqli_query($link, $query);
             background-color: #f2f2f2;
         }
         /* dropdown menu */
+
+        .user-name {
+            color: #8a6eff;
+            position: relative;
+        }
+
+        .user-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #8a6eff;
+            border-radius: 3px;
+        }
         
         .container {
             max-width: 1200px;
