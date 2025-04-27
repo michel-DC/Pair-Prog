@@ -380,7 +380,7 @@ $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist",
                         <ul class="dropdown-menu">
 
                         <?php if (isset($_SESSION['fullname'])): ?>
-                            <li>Bienvenue <span class="user-name"><?= $_SESSION['fullname'] ?></span></li>
+                            <li><a href="#">Bienvenue <span class="user-name"><?= htmlspecialchars($_SESSION['fullname']) ?></span></a></li> <!-- html special char sert à mettre du html dans du php pour conserver leur signification https://www.php.net/manual/fr/function.htmlspecialchars.php -->
                         <?php endif; ?>
 
                             <li><a href="../user/mes-reserv.php">Mes Réservations</a></li>

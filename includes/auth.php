@@ -32,7 +32,7 @@ if (strpos($chemin, '/admin') !== false && isset($_SESSION['role']) && $_SESSION
 
 // Si l'utilisateur connecté est "admin" mais veut aller sur devs.php
 if (strpos($chemin, 'devs.php') !== false && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    header('Location: ../connexion/login.php?erreur=acces_interdit_admin');
+    header('Location: ../admin/dashboard.php?erreur=acces_interdit_admin');
     exit();
 }
 ?>

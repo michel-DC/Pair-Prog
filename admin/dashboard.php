@@ -5,9 +5,6 @@ $_SESSION['connecté'] = true;
 
 // Connexion à la base de données
 $link = mysqli_connect("localhost", "micheldjoumessi_pair-prog", "michelchrist", "micheldjoumessi_pair-prog");
-if (!$link) {
-    die("Erreur de connexion à la base de données: " . mysqli_connect_error());
-}
 
 // Récupérer le nombre de développeurs
 $query = "SELECT COUNT(*) as total FROM developpeurs";
@@ -77,7 +74,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
         }
         .stat-number {
             font-size: 1.5rem;
-            color: #2d79f3;
+            color: #8a6eff;
             font-weight: 600;
             margin-bottom: 10px;
         }
@@ -98,7 +95,7 @@ $total_users = mysqli_fetch_assoc($result)['total'];
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: fadeOut 4s forwards;
+            animation: fadeOut 5s forwards;
         }
 
         @keyframes fadeOut {

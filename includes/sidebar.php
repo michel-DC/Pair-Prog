@@ -66,11 +66,31 @@
         position: fixed;
         left: 0;
         top: 0;
-        padding: 30px;
+        padding: 20px;
         box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        transition: width 0.3s ease;
+        transition: all 0.3s ease;
+        z-index: 1000;
     }
+    
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 80px;
+            padding: 10px;
+        }
+        .sidebar .nav-text,
+        .sidebar-header h2 {
+            display: none;
+        }
+        .sidebar .nav-icon {
+            margin-right: 0;
+        }
+        .sidebar-footer {
+            left: 10px;
+            right: 10px;
+        }
+    }
+    
     .sidebar.collapsed {
         width: 80px;
     }
@@ -95,6 +115,11 @@
         cursor: pointer;
         font-size: 1.5rem;
         padding: 5px;
+        color: #2d79f3;
+        transition: color 0.2s ease;
+    }
+    .toggle-btn:hover {
+        color: #1a5bbf;
     }
     .sidebar-nav ul {
         list-style: none;
@@ -107,29 +132,33 @@
         padding: 12px 15px;
         color: #151717;
         text-decoration: none;
-        border-radius: 10px;
-        margin-bottom: 5px;
+        border-radius: 8px;
+        margin-bottom: 8px;
         transition: all 0.2s ease-in-out;
         border: 1.5px solid #ecedec;
+        background-color: #f8f9fa;
     }
     .nav-link:hover {
-        border: 1.5px solid #2d79f3;
-        background-color: #f8f9fa;
+        border-color: #2d79f3;
+        background-color: #e9f2ff;
+        transform: translateX(5px);
     }
     .nav-icon {
         margin-right: 15px;
         font-size: 1.2rem;
+        color: #2d79f3;
+        transition: margin 0.3s ease;
     }
     .nav-text {
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 500;
         transition: opacity 0.2s ease;
     }
     .sidebar-footer {
         position: absolute;
         bottom: 70px;
-        left: 30px;
-        right: 30px;
+        left: 20px;
+        right: 20px;
         padding-top: 20px;
         border-top: 1px solid #ecedec;
     }
@@ -139,6 +168,7 @@
     }
     .logout-link:hover {
         background-color: #ffe6e6;
+        border-color: #ff9999;
     }
 </style>
 
@@ -146,5 +176,22 @@
     document.getElementById('toggle-sidebar').addEventListener('click', function() {
         const sidebar = document.querySelector('.sidebar');
         sidebar.classList.toggle('collapsed');
+    });
+
+    // Handle mobile responsiveness
+    window.addEventListener('resize', function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth <= 768) {
+            sidebar.classList.add('collapsed');
+        } else {
+            sidebar.classList.remove('collapsed');
+        }
+    });
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', function() {
+        if (window.innerWidth <= 768) {
+            document.querySelector('.sidebar').classList.add('collapsed');
+        }
     });
 </script>

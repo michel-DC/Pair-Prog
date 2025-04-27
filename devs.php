@@ -314,9 +314,9 @@ $result = mysqli_query($link, $query);
                         <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         </svg>
-                     <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">
                         <?php if (isset($_SESSION['fullname'])): ?>
-                            <li>Bienvenue <span class="user-name"><?= htmlspecialchars($_SESSION['fullname']) ?></span></li> <!-- html special char sert à mettre du html dans du php pour conserver leur signification https://www.php.net/manual/fr/function.htmlspecialchars.php -->
+                            <li><a href="#">Bienvenue <span class="user-name"><?= htmlspecialchars($_SESSION['fullname']) ?></span></a></li> <!-- html special char sert à mettre du html dans du php pour conserver leur signification https://www.php.net/manual/fr/function.htmlspecialchars.php -->
                         <?php endif; ?>
                             <li><a href="../user/mes-reserv.php">Mes Réservations</a></li>
                             <li><a href="../connexion/logout-user.php">Se Déconnecter</a></li>

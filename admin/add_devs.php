@@ -197,16 +197,16 @@ if (isset($_POST['ajt_developpeur'])) {
             </div>
             
             <div class="form-group">
-                <label for="stack">Stack technique</label>
+                <label for="stack">Stack technique: choisissez parmi les langages ci-dessous</label>
                 <div id="selection-langages">
-                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="HTML" alt="HTML" class="language-icon">
-                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="CSS" alt="CSS" class="language-icon">
+                    <img src="https://icons.iconarchive.com/icons/cornmanthe3rd/metronome/512/Other-html-5-icon.png" data-lang="HTML" alt="HTML" class="language-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png" data-lang="CSS" alt="CSS" class="language-icon">
                     <img src="https://img.icons8.com/color/512/javascript.png" data-lang="Javascript" alt="Javascript" class="language-icon">
-                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="PHP" alt="PHP" class="language-icon">
-                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="SQL" alt="SQL" class="language-icon">
-                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="ReactJS" alt="ReactJS" class="language-icon">
-                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="VueJS" alt="VueJS" class="language-icon">
-                    <img src="https://img.icons8.com/color/512/javascript.png" data-lang="NextJS" alt="NextJS" class="language-icon">
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-php-99-1175127.png?f=webp" data-lang="PHP" alt="PHP" class="language-icon">
+                    <img src="https://img.icons8.com/?size=512&id=39858&format=png" data-lang="MySQL" alt="MySQL" class="language-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png" data-lang="ReactJS" alt="ReactJS" class="language-icon">
+                    <img src="https://static-00.iconduck.com/assets.00/vue-js-icon-2048x1766-btrgkrhi.png" data-lang="VueJS" alt="VueJS" class="language-icon">
+                    <img src="https://static-00.iconduck.com/assets.00/next-js-icon-2048x2048-5dqjgeku.png" data-lang="NextJS" alt="NextJS" class="language-icon">
                 </div>
                 <input type="hidden" id="stack" name="stack">
             </div>
